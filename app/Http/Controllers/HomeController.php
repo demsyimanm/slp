@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Auth;
+use Input;
+use Request;
+use App\User;
+use Hash;
 use App\Http\Requests;
 use PhpOffice\PhpPresentation\PhpPresentation;
 use PhpOffice\PhpPresentation\IOFactory;
@@ -17,10 +20,6 @@ class HomeController extends Controller
 {
 	public function coba()
 	{
-
-		
-
-
 		$objPHPPowerPoint = new PhpPresentation();
 
 		$objPHPPowerPoint->removeSlideByIndex(0);
@@ -135,6 +134,66 @@ class HomeController extends Controller
 		$oWriterODP->save('C:/xampp/htdocs/blog/vendor/phpoffice/phppresentation/samples/resources' . "/sample.odp");
 
 	}
+
+	protected $data = array();
+    public function index()
+    {   
+        $this->data['username'] = "";
+        $this->data['password'] = "";
+        if(Auth::check())
+        {
+            $this->data['username'] = Auth::user()->username;
+            $this->data['password'] = Auth::user()->password;
+        }
+        return view('home',$this->data);
+    }
+
+    public function login()
+    {
+        if (Request::isMethod('post'))
+        {
+            $credentials = Input::only('username','password');
+            $this->data['username'] = Input::get('username');
+            if (Auth::attempt($credentials,true))
+            {
+                return view('home');
+            }
+            return redirect('/');
+        }
+
+        else if (Request::isMethod('get'))
+        {
+            if (Auth::check())
+            {
+                return view('home');
+            }
+
+            return view('login');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function daftar()
+    {
+    	$data = Input::all();
+    	User::create(array(
+            'nip'  		=> $data['nip'],
+            'role_id'   => 2,
+            'username'	=> $data['username'],
+            'email'		=> $data['email'],
+            'password'  => Hash::make($data['password']),
+            'nama'		=> $data['name']
+        ));
+        return redirect('/');
+    }
+
+
+
     
 }
 

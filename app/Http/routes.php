@@ -11,8 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
-
+});*/
+Route::get('/', 'HomeController@login');
+Route::post('/', 'HomeController@login');
 Route::get('mboh', 'HomeController@coba');
+Route::post('register', 'HomeController@daftar');
+
+Route::group(['middleware' => 'auth'], function()
+{
+	Route::get('logout', 'HomeController@logout');
+});
