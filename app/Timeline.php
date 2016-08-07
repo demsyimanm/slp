@@ -13,6 +13,7 @@ class Timeline extends Model
     	'project_id',
     	'tanggalmulai',
     	'tanggalakhir',
+        'urutan',
     	'deskripsitimeline',
     	'submittimeline',
     	'statustimeline',		 

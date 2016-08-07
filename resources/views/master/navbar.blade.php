@@ -12,8 +12,8 @@
       <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-          <li><a><i class="fa fa-home"></i> Home </span></a></li>
-          <li><a><i class="fa fa-edit"></i> My Project Idea </a></li>
+          <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Home </span></a></li>
+          <li><a href="{{url('project')}}"><i class="fa fa-edit"></i> My Project Idea </a></li>
           <li><a><i class="fa fa-area-chart"></i> My Project Progress </span></a></li>
           <li><a><i class="fa fa-history"></i> My Past Project</span></a></li>
         </ul>
@@ -34,7 +34,7 @@
       <ul class="nav navbar-nav navbar-right" >
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="{{URL('img/top.png')}}" alt=""><span style="color:white">John Doe</span>
+            <img src="{{URL('img/top.png')}}" alt=""><span style="color:white">{{Auth::user()->nama}}</span>
             <span class=" fa fa-angle-down" style="color:white"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">

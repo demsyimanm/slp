@@ -22,4 +22,12 @@ Route::post('register', 'HomeController@daftar');
 Route::group(['middleware' => 'auth'], function()
 {
 	Route::get('logout', 'HomeController@logout');
+
+	/*Project*/
+	Route::get('project', 'ProjectController@home');
+	Route::get('project/create', 'ProjectController@create');
+	Route::post('project/create', 'ProjectController@create');
+	Route::get('project/delete/{id}', 'ProjectController@delete');
+	Route::get('project/update/{id}', 'ProjectController@update');
+	Route::post('project/update/{id}', 'ProjectController@update');
 });

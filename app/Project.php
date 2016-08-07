@@ -17,7 +17,9 @@ class Project extends Model
     	'status',
     	'budgetperkiraan',
     	'budgetperusahaan',
-    	'mentor'
+    	'mentor',
+        'tglterima'
+
     		 
     ];
     protected $SoftDelete = true;

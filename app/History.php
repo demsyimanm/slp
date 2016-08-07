@@ -9,9 +9,10 @@ class History extends Model
     protected $table = 'history';
     protected $primaryKey = 'id';
     public $incrementing = true;
-    protected $fillable = [
-    	'user_id', 
+    protected $fillable = [ 
     	'project_id', 
+        'jenis',
+        'dari',
     	'perubahan'
     ];
     protected $SoftDelete = true;
